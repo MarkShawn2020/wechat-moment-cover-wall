@@ -6,7 +6,7 @@ from config import DEFAULT_TARGET_WIDTH, DEFAULT_OUTPUT_DIR_NAME, DEFAULT_OUTPUT
 from algo import concat_imgs_with_centered
 
 
-class ConcentrateImgsWithCover:
+class CoverWall:
 
     def __init__(
             self,
@@ -48,8 +48,9 @@ class ConcentrateImgsWithCover:
         blocked_img = self._get_block_of_image(cover_img, index)
         merged_imgs = concat_imgs_with_centered(imgs, blocked_img)
 
+        cover_name = os.path.basename(self._cover_path).split(".")[0]
         output_path = os.path.join(self._output_dir_path,
-                                   f"{self._cover_path.split('.')[0]}-{self._grid_cnt}-{index}-{imgs_dir_name}.{self._output_format}")
+                                   f"{cover_name}-{index}-{imgs_dir_name.split('-')[-1]}.{self._output_format}")
         merged_imgs.save(output_path)
         print("outputted file path: ", output_path)
         # merged_imgs.show()

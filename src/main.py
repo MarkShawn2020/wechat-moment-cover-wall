@@ -2,7 +2,7 @@ import math
 import os
 
 from config import DEFAULT_TARGET_WIDTH, DEFAULT_OUTPUT_FORMAT, AVAILABLE_OUTPUT_FORMATS
-from core import ConcentrateImgsWithCover
+from core import CoverWall
 
 if __name__ == '__main__':
     import argparse
@@ -59,7 +59,7 @@ if __name__ == '__main__':
         queue = sorted([i for i in os.listdir(source_dir) if i.startswith("必选")])
 
     # 拼接
-    runner = ConcentrateImgsWithCover(source_dir, grid_cnt=int(math.sqrt(len(queue))), cover_path=cover_path,
-                                      output_format=args.output_format)
+    runner = CoverWall(source_dir, grid_cnt=int(math.sqrt(len(queue))), cover_path=cover_path,
+                       output_format=args.output_format)
     for index, item in enumerate(queue):
         runner.concat_imgs_from_dir(item, index)
